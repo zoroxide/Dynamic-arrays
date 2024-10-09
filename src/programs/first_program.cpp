@@ -1,4 +1,4 @@
-#include "../arrays/1darray/Array.h"
+#include "../../include/arrays/1darray/Array.h"
 #include <bits/stdc++.h>
 #include <cstdlib>
 
@@ -9,10 +9,7 @@ public:
     Array arr;
     int choice, element;
 
-    int ops = 10;
-
     while (true) {
-        ops--;
       std::cout << "\nMenu:\n";
       std::cout << "1. Add element\n";
       std::cout << "2. Calculate sum\n";

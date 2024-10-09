@@ -11,15 +11,17 @@ Array_2d::Array_2d(int r, int c) : rows(r), cols(c) {
   }
 }
 
-Array_2d::Array_2d(){
-    
-}
+Array_2d::Array_2d() {}
 
 Array_2d::~Array_2d() {
   //   for (int i = 0; i < rows; ++i) {
   //     delete[] array[i];
   //   }
   delete[] array;
+}
+
+void Array_2d::add(int number) const{
+  // TODO
 }
 
 void Array_2d::inputElements() {

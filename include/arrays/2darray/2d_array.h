@@ -11,6 +11,9 @@ public:
   Array_2d();
   ~Array_2d();
 
+  void add(int number) const;
+
+  // helper (assingment 1)
   void inputElements();
   void display() const;
   void calculateSum() const;
