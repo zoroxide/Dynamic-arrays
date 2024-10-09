@@ -4,38 +4,84 @@
 #include <iomanip>
 #include <iostream>
 
-Array_2d::Array_2d(int r, int c) : rows(r), cols(c) {
-  array = new int *[rows];
-  for (int i = 0; i < rows; ++i) {
-    array[i] = new int[cols];
-  }
+Array_2d::Array_2d(int r, int c) : rows(r), cols(c), currentSize(0) {
+    array = new int*[rows];
+    for (int i = 0; i < rows; ++i) {
+        array[i] = new int[cols]();
+    }
 }
 
-Array_2d::Array_2d() {}
+Array_2d::Array_2d() : rows(0), cols(0), array(nullptr), currentSize(0) {}
 
 Array_2d::~Array_2d() {
-  //   for (int i = 0; i < rows; ++i) {
-  //     delete[] array[i];
-  //   }
-  delete[] array;
+    for (int i = 0; i < rows; ++i) {
+        delete[] array[i];
+    }
+    delete[] array;
 }
 
-void Array_2d::add(int number) const {
-  static int rowIndex = 0;
-  static int colIndex = 0;
-
-  array[rowIndex][colIndex] = number;
-
-  ++colIndex;
-  if (colIndex == cols) {
-    colIndex = 0;
-    ++rowIndex;
-  }
-  if (rowIndex == rows) {
-    rowIndex = 0;  // Start overwriting from the beginning if we exceed the array size
-  }
+int Array_2d::getSize() const {
+    return currentSize;
 }
 
+int Array_2d::getCapacity() const {
+    return rows * cols;
+}
+
+bool Array_2d::isEmpty() const {
+    return currentSize == 0;
+}
+
+void Array_2d::add(int element) {
+    if (currentSize >= getCapacity()) {
+        throw std::out_of_range("Array is full");
+    }
+
+    int rowIndex = currentSize / cols;
+    int colIndex = currentSize % cols;
+    array[rowIndex][colIndex] = element;
+    currentSize++;
+}
+
+int& Array_2d::get(int index) {
+    if (index < 0 || index >= currentSize) {
+        throw std::out_of_range("Index out of range");
+    }
+
+    int rowIndex = index / cols;
+    int colIndex = index % cols;
+    return array[rowIndex][colIndex];
+}
+
+void Array_2d::pop() {
+    if (isEmpty()) {
+        throw std::underflow_error("Array is empty");
+    }
+
+    currentSize--;
+}
+
+void Array_2d::removeAt(int index) {
+    if (index < 0 || index >= currentSize) {
+        throw std::out_of_range("Index out of range");
+    }
+
+    int rowIndex = index / cols;
+    int colIndex = index % cols;
+
+    for (int i = index; i < currentSize - 1; ++i) {
+        int nextRowIndex = (i + 1) / cols;
+        int nextColIndex = (i + 1) % cols;
+        array[rowIndex][colIndex] = array[nextRowIndex][nextColIndex];
+        rowIndex = nextRowIndex;
+        colIndex = nextColIndex;
+    }
+    currentSize--;
+}
+
+int& Array_2d::operator[](int index) {
+    return get(index);
+}
 
 void Array_2d::inputElements() {
   for (int i = 0; i < rows; ++i) {
