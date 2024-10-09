@@ -32,6 +32,8 @@ public:
 
     void removeAt(int index);
 
+    void display() {}
+
     int& operator[](int index);
 
     // assignment 1
