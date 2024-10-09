@@ -3,5 +3,5 @@
 
 int main(){
     // firstProgram one_dim;
-    secondProgram two_dim;
+    // secondProgram two_dim;
 }
