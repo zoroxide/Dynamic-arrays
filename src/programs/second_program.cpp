@@ -68,7 +68,7 @@ public:
         }
         break;
       case 8:
-        std::cout << "Array elements: ";
+        std::cout << "Array elements: \n";
         myArray.display();
         std::cout << "\n";
         break;

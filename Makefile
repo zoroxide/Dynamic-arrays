@@ -3,7 +3,7 @@ CXXFLAGS = -Wall -std=c++11
 
 TARGET = output
 
-SRCS = main.cpp include/arrays/1darray/Array.cpp include/arrays/2darray/2d_array.cpp src/programs/first_program.cpp src/programs/second_program.cpp src/main.cpp
+SRCS = include/arrays/1darray/Array.cpp include/arrays/2darray/2d_array.cpp src/programs/first_program.cpp src/programs/second_program.cpp src/main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

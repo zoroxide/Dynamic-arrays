@@ -20,9 +20,22 @@ Array_2d::~Array_2d() {
   delete[] array;
 }
 
-void Array_2d::add(int number) const{
-  // TODO
+void Array_2d::add(int number) const {
+  static int rowIndex = 0;
+  static int colIndex = 0;
+
+  array[rowIndex][colIndex] = number;
+
+  ++colIndex;
+  if (colIndex == cols) {
+    colIndex = 0;
+    ++rowIndex;
+  }
+  if (rowIndex == rows) {
+    rowIndex = 0;  // Start overwriting from the beginning if we exceed the array size
+  }
 }
+
 
 void Array_2d::inputElements() {
   for (int i = 0; i < rows; ++i) {
