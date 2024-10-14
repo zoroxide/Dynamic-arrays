@@ -9,6 +9,7 @@ private:
 
 public:
     Array_2d(int r, int c);
+    Array_2d(std::initializer_list<int> initList);
     Array_2d();
     ~Array_2d();
 

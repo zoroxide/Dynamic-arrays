@@ -20,6 +20,12 @@ Array_2d::~Array_2d() {
     delete[] array;
 }
 
+Array_2d::~Array_2d(std::initializer_list<int> initList) {
+  // TODO
+}
+
+
+
 int Array_2d::getSize() const {
     return currentSize;
 }
